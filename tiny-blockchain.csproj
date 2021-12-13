@@ -6,4 +6,10 @@
     <RootNamespace>tiny_blockchain</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Update="Program.cs">
+      <DependentUpon>README.md</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
 </Project>
