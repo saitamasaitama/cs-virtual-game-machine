@@ -1,10 +1,42 @@
+using System;
+using tiny_blockchain.VM.Wards;
+
 namespace tiny_blockchain.VM
 {
-  public class RiscVWard:Ward
+  public class RV32I:Ward,IBaseRISCV
   {
 
-    public RiscVWard(byte[] bytes) : base(bytes)
+    public RV32I(byte[] bytes) : base(bytes)
     {
+      if (bytes.Length != 4)
+      {
+        throw new Exception("Length Invalid");
+      }
+    }
+    
+    
+
+    protected int OperatorCode
+    {
+      get
+      {
+        return this.ReadBits(0,7);
+      }
+    }
+    public int opcode => OperatorCode;
+  }
+  
+  public class RV64I:Ward
+  {
+
+    public RV64I(byte[] bytes) : base(bytes)
+    {
+      if (bytes.Length != 8)
+      {
+        throw new Exception("Length Invalid");
+      }
+      
     }
   }
+
 }

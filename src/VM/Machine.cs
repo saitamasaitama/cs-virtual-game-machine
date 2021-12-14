@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.IO;
 using System.Reflection.Metadata;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace tiny_blockchain.VM
@@ -16,6 +17,7 @@ namespace tiny_blockchain.VM
   /// <summary>
   /// CPU,メモリ,外部出力等も備わった仮想マシン
   /// </summary>
+  [Serializable]
   public abstract class Machine
   {
     private MachineMeta meta;
@@ -33,6 +35,22 @@ namespace tiny_blockchain.VM
     }
     
     protected abstract Processor InitProsessor();
+
+    public void Run(ProgramCode code)
+    {
+      Console.WriteLine("Run Code");
+      
+      
+      foreach (Ward w in code.wards)
+      {
+        this.RunWard(w);
+      }
+    }
+
+    public void RunWard(Ward w)
+    {
+      Console.WriteLine($"Run Ward {w}");
+    }
 
     public void Load(Stream input)
     {

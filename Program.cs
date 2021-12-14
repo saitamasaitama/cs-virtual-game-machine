@@ -1,12 +1,19 @@
 ﻿using System;
+using tiny_blockchain.VM;
 
 namespace tiny_blockchain
 {
-    class Program
+  class Program
+  {
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Hello World!");
-        }
+
+      RiscVMachine riscVMachine = new RiscVMachine(new MachineMeta()
+      {
+        memorySize = 1024
+      });
+      
+      Console.WriteLine("Hello World!");
     }
+  }
 }
