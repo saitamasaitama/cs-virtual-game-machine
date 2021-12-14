@@ -23,7 +23,7 @@ namespace tiny_blockchain.VM
     public Ward ReadWard()
     {
       byte[] bytes= this.ReadBytes(4);
-      return new Ward();
+      return new Ward(bytes);
     }
 
   }

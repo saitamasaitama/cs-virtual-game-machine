@@ -13,6 +13,9 @@ namespace tiny_blockchain.VM
 
   }
 
+  /// <summary>
+  /// CPU,メモリ,外部出力等も備わった仮想マシン
+  /// </summary>
   public abstract class Machine
   {
     private MachineMeta meta;

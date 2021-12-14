@@ -12,7 +12,7 @@ namespace tiny_blockchain.VM
       bytes = new byte[size];
     }
 
-    public static explicit operator byte[](Memory memory)
+    public static implicit operator byte[](Memory memory)
     {
       return memory.bytes;
     }

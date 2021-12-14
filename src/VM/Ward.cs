@@ -1,6 +1,6 @@
 namespace tiny_blockchain.VM
 {
-  public struct Ward
+  public class Ward
   {
     public byte[] bytes;
     
@@ -9,7 +9,7 @@ namespace tiny_blockchain.VM
       this.bytes = bytes;
     }
 
-    public static explicit operator byte[](Ward w)
+    public static implicit operator byte[](Ward w)
     {
       return w.bytes;
     }

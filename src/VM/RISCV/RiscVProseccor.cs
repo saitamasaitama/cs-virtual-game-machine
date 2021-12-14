@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace tiny_blockchain.VM
 {
   public class RiscVProseccor:Processor
@@ -5,7 +7,11 @@ namespace tiny_blockchain.VM
 
     protected override Register[] InitRegister()
     {
-      throw new System.NotImplementedException();
+      List<Register> result = new List<Register>();
+      
+      result.Add(new Register());
+
+      return result.ToArray();
     }
   }
 }
