@@ -1,13 +1,20 @@
 using System.Collections.Generic;
 using System.IO;
+using tiny_blocn.VM;
 
 namespace tiny_blockchain.VM
 {
-  public class Compiler
+  public abstract class Compiler<WORD>
+  where WORD:Word
   {
-    public Ward[] IRString2Wards()
+    public byte[] Source2Bytes(string source)
     {
-      var result = new List<Ward>();
+      //WordWriter
+    }
+    
+    public Word[] IRString2Wards()
+    {
+      var result = new List<Word>();
       return result.ToArray();
     }
     

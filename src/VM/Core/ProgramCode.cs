@@ -2,10 +2,10 @@ namespace tiny_blockchain.VM
 {
   public struct ProgramCode
   {
-    public Ward[] wards;
+    public Word[] wards;
     
     
-    public static implicit operator Ward[](ProgramCode code)
+    public static implicit operator Word[](ProgramCode code)
     {
       return code.wards;
     } 

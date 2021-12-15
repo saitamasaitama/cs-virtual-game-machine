@@ -1,5 +1,6 @@
 ﻿using System;
 using tiny_blockchain.VM;
+using tiny_blockchain.VM.BrainFuck;
 
 namespace tiny_blockchain
 {
@@ -8,12 +9,15 @@ namespace tiny_blockchain
     static void Main(string[] args)
     {
 
-      RiscVMachine riscVMachine = new RiscVMachine(new MachineMeta()
+      BrainFuckMachine machine = new BrainFuckMachine(new MachineMeta()
       {
         memorySize = 1024
       });
       
-      Console.WriteLine("Hello World!");
+      machine.RunWard(BrainFuckWord.From(TypeBrainFuckCommand.POINTER_INC));
+      machine.MemoryDump();
+      
+      
     }
   }
 }

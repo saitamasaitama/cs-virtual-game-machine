@@ -3,7 +3,9 @@ using tiny_blockchain.VM.Wards;
 
 namespace tiny_blockchain.VM
 {
-  public class RV32I:Ward,IBaseRISCV
+  
+  
+  public class RV32I:Word,IBaseRISCV
   {
 
     public RV32I(byte[] bytes) : base(bytes)
@@ -26,7 +28,7 @@ namespace tiny_blockchain.VM
     public int opcode => OperatorCode;
   }
   
-  public class RV64I:Ward
+  public class RV64I:Word
   {
 
     public RV64I(byte[] bytes) : base(bytes)

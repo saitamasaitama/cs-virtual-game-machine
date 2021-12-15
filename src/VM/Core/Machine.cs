@@ -7,65 +7,65 @@ using System.Text;
 
 namespace tiny_blockchain.VM
 {
-
   public struct MachineMeta
   {
     public int memorySize;
-
   }
 
   /// <summary>
   /// CPU,メモリ,外部出力等も備わった仮想マシン
   /// </summary>
   [Serializable]
-  public abstract class Machine
+  public abstract class Machine<WORD>
+    where WORD : Word
   {
     private MachineMeta meta;
-    //BIOS相当が必要
 
-    //
-    public Processor mainProcessor;
+    //BIOS相当が必要
+    public Processor<WORD> mainProcessor;
     public Memory mainMemory;
-    
     
     public Machine(MachineMeta meta)
     {
       mainMemory = new Memory(meta.memorySize);
       mainProcessor = InitProsessor();
     }
-    
-    protected abstract Processor InitProsessor();
+
+    protected abstract Processor<WORD> InitProsessor();
 
     public void Run(ProgramCode code)
     {
       Console.WriteLine("Run Code");
-      
-      
-      foreach (Ward w in code.wards)
+
+      foreach (WORD w in code.wards)
       {
         this.RunWard(w);
       }
     }
 
-    public void RunWard(Ward w)
-    {
-      Console.WriteLine($"Run Ward {w}");
-    }
+    public abstract void RunWard(WORD w);
 
-    public void Load(Stream input)
+    public WORD[] Load(Stream input)
     {
-      var reader = new WardReader(input);
+      WordReader<WORD> reader =loadReader(input);
+
       using (reader)
       {
-        reader.ReadWard();
-
+        reader.ReadWords();
       }
-      Console.WriteLine("Program ReadEnd");
-    }
-  }
 
-  
-  
+      return new WORD[] { };
+      
+    }
+
+    public void MemoryDump()
+    {
+      Console.WriteLine(BitConverter.ToString(this.mainMemory));
+    }
+    
+
+    protected abstract WordReader<WORD> loadReader(Stream stream);
+  }
 
 
   public enum TypeEndian
@@ -76,22 +76,12 @@ namespace tiny_blockchain.VM
 
   public class WardMeta
   {
-    public int bitLength;
+    public int wordLengthBits;
     public TypeEndian Endian;
-
   }
-
 
 
   public interface WARD_INTERFACE
   {
-
   }
-
-
-
-
-
-
-
 }
