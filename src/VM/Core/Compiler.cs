@@ -10,13 +10,17 @@ namespace tiny_blockchain.VM
     public byte[] Source2Bytes(string source)
     {
       //WordWriter
+      return Source2Wards(source).ToBytes();
     }
-    
-    public Word[] IRString2Wards()
+
+    public WORD[] Source2Wards(string source)
     {
-      var result = new List<Word>();
+      var result = new List<WORD>();
+
       return result.ToArray();
     }
+    
+    
     
     
    

@@ -4,6 +4,11 @@ namespace tiny_blockchain.VM
 {
   public struct Register
   {
+    public enum RegisterType
+    {
+      
+    }
+    
     private byte[] bytes;
 
     public Register(int bits)

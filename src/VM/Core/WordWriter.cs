@@ -8,7 +8,7 @@ namespace tiny_blocn.VM
     where WORD:Word
   {
     
-    private int 
+    
 
     public void WriteWard(WORD w)
     {

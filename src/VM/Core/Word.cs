@@ -54,6 +54,11 @@ namespace tiny_blockchain.VM
       Int64 totalBytes = totalBit % 8 == 0 ? totalBit / 8 : totalBit / 8 + 1;
       
       //bitごとに計算
+      for (int i = 0; i < words.Length; i++)
+      {
+        
+      }
+      
       
       return new byte[totalBytes];
     }

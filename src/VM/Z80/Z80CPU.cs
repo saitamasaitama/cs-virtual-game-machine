@@ -16,8 +16,13 @@ namespace tiny_blockchain.VM.Z80
 
   public class Z80Ward : Word
   {
-    public Z80Ward(byte[] bytes) : base(bytes)
+    public Z80Ward(byte[] bytes) : base(bytes,4)
     {
+    }
+
+    public override string ToASMCode()
+    {
+      return "";
     }
   }
 }
