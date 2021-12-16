@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
+using tiny_blockchain.VM.Core;
 
 namespace tiny_blockchain.VM.BrainFuck
 {
@@ -30,15 +32,33 @@ namespace tiny_blockchain.VM.BrainFuck
       return BitConverter.GetBytes(words.Length); 
     }
 
+    public override string DeCompileFromWords(BrainFuckWord[] words)
+    {
+      StringBuilder sb = new StringBuilder();
+
+      foreach (BrainFuckWord word in words)
+      {
+        sb.Append(word.ToASMCode());
+      }
+
+      return sb.ToString();
+    }
+
+    /// <summary>
+    /// これは正しい
+    /// </summary>
+    /// <param name="source"></param>
+    /// <returns></returns>
     public override BrainFuckWord[] Source2Words(string source)
     {
-      Console.WriteLine("Source2Words");
       List<BrainFuckWord> result = new List<BrainFuckWord>();
       //ソースから1文字ずつ
       foreach (char c in source)
       {
         if (!CharacterTable.ContainsKey(c.ToString())) continue;
-        result.Add(fromString(c.ToString()));
+        string cs = c.ToString();
+        BrainFuckWord w = fromString(cs);
+        result.Add(w);
       }
       return result.ToArray();
     }
@@ -48,24 +68,27 @@ namespace tiny_blockchain.VM.BrainFuck
       //最初の4バイトはヘッダ
       int wordCount= BitConverter.ToInt32(code, 0);
       List<BrainFuckWord> result = new List<BrainFuckWord>();
-      Console.WriteLine("bytecode2Words");
+      Console.WriteLine($"bytecode2Words WC={wordCount}");
       BitArray bitArray = new BitArray(code);
-
-      
+      Console.WriteLine($"ORIGIN_bit={bitArray.ToBitsString(4)}");
+      //bitarrayはリトルエンディアン。つまり逆
+      int wordSize = 3;
+      int offsetSize = 4*8;
       for (int i = 0; i < wordCount; i++)
       {
-        int bitIndex = 4 + (3 * i);
-        int ward = 0;
-        for (int j = 0; j < 3; j++)
+        int bitIndex = offsetSize + (wordSize * i);
+        int word = 0;
+        //端数を調べる
+        for (int j = 0; j < wordSize; j++)
         {
           if (bitArray[bitIndex + j])
           {
             int on = 1;
-            on = on << j;
-            ward = ward | on;
+            on = on << (wordSize-1-j);
+            word = word | on;
           }
         }
-        result.Add(BrainFuckWord.From((TypeBrainFuckCommand)ward));
+        result.Add(BrainFuckWord.From((TypeBrainFuckCommand)word));
       }
       
       return result.ToArray();

@@ -14,7 +14,7 @@ namespace tiny_blockchain.VM.BrainFuck
       return new BrainFuckProcessor();
     }
 
-    public override void RunWard(BrainFuckWord w)
+    protected override void RunWord(BrainFuckWord w)
     {
       this.mainProcessor.ExecWord(w);
       

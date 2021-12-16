@@ -37,7 +37,7 @@ namespace tiny_blockchain.VM
     {
       foreach (WORD word in words)
       {
-        this.RunWard(word);
+        this.RunWord(word);
       }
     }
 
@@ -45,7 +45,7 @@ namespace tiny_blockchain.VM
     /// 1コマンドを実行
     /// </summary>
     /// <param name="w"></param>
-    public abstract void RunWard(WORD w);
+    protected abstract void RunWord(WORD w);
 
     /// <summary>
     /// これ使ってる？

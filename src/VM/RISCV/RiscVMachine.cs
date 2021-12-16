@@ -15,7 +15,7 @@ namespace tiny_blockchain.VM
       return new RiscVProseccor();
     }
 
-    public override void RunWard(RV32I w)
+    protected override void RunWord(RV32I w)
     {
       throw new System.NotImplementedException();
     }

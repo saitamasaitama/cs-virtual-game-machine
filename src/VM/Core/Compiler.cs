@@ -18,9 +18,8 @@ namespace tiny_blockchain.VM
     }
 
     public abstract byte[] CreateSourceHeader(WORD[] words);
-
+    public abstract string DeCompileFromWords(WORD[] words);
     public abstract WORD[] Source2Words(string source);
-
     public abstract WORD[] ByteCode2Words(byte[] code);
   }
 }

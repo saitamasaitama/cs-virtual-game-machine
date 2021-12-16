@@ -15,14 +15,14 @@ namespace tiny_blockchain.VM.BrainFuck
 [ ポインタが指す値が0なら、対応する ] の直後にジャンプする。C言語の「while(*ptr){」に相当。
 ] ポインタが指す値が0でないなら、対応する [ （の直後[注釈 1]）にジャンプする。C言語の「}」に相当[注釈 2]。 
    */
-    POINTER_INC,
-    POINTER_DEC,
-    POINTER_VAL_INC,
-    POINTER_VAL_DEC,
-    WRITE_POINTER_VAL,
-    READ_INPUT_BYTE,
-    JUMP_NEXT,
-    JUMP_BACK
+    POINTER_INC, // > 000
+    POINTER_DEC,  // < 001
+    POINTER_VAL_INC, // + 010
+    POINTER_VAL_DEC,  // - 011
+    WRITE_POINTER_VAL,  //. 100
+    READ_INPUT_BYTE,  // , 101
+    JUMP_NEXT,        // [ 110
+    JUMP_BACK         // ] 111
   }
 
   public class BrainFuckWord : Word
@@ -52,13 +52,13 @@ namespace tiny_blockchain.VM.BrainFuck
       TypeBrainFuckCommand c = this;
       switch (c)
       {
-        case TypeBrainFuckCommand.JUMP_BACK: return "]";
-        case TypeBrainFuckCommand.JUMP_NEXT: return "[";
-        case TypeBrainFuckCommand.POINTER_DEC: return "<";
-        case TypeBrainFuckCommand.POINTER_INC: return ">";
-        case TypeBrainFuckCommand.POINTER_VAL_DEC: return "-";
-        case TypeBrainFuckCommand.POINTER_VAL_INC: return "+";
-        case TypeBrainFuckCommand.READ_INPUT_BYTE: return ",";
+        case TypeBrainFuckCommand.JUMP_BACK: return "]"; 
+        case TypeBrainFuckCommand.JUMP_NEXT: return "["; 
+        case TypeBrainFuckCommand.POINTER_DEC: return "<";  
+        case TypeBrainFuckCommand.POINTER_INC: return ">";  
+        case TypeBrainFuckCommand.POINTER_VAL_DEC: return "-";  
+        case TypeBrainFuckCommand.POINTER_VAL_INC: return "+";  
+        case TypeBrainFuckCommand.READ_INPUT_BYTE: return ",";  
         case TypeBrainFuckCommand.WRITE_POINTER_VAL: return ".";
 
         default: return "";
@@ -80,6 +80,14 @@ namespace tiny_blockchain.VM.BrainFuck
       }
 
       return result;
+    }
+
+
+    public override string ToString()
+    {
+      //TypeBrainFuckCommand w = this;
+      return ToASMCode();
+      //return w.ToString();
     }
   }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Claims;
+using System.Text;
 using System.Text.RegularExpressions;
 using tiny_blockchain.VM;
 using tiny_blockchain.VM.BrainFuck;
@@ -89,8 +90,24 @@ namespace tiny_blockchain
       if (option.isCompile)
       {
         Console.WriteLine("Compile Mode");
-        byte[] bytes = compiler.Source2Bytes(Console.In.ReadToEnd());
+        string source = Console.In.ReadToEnd();
+        byte[] bytes = compiler.Source2Bytes(source);
+        
+        BrainFuckWord[] words = compiler.ByteCode2Words(bytes);
+        var decompile = compiler.DeCompileFromWords(words);
+        Console.WriteLine($"SOURCE={source}");
+        //デバッグ用　ここから
+        StringBuilder sb = new StringBuilder();
+        foreach (BrainFuckWord word in words)
+        {
+          sb.Append(word);
+        }
+        
+        //デバッグ用　ここまで
+        Console.WriteLine($"COMPILE={sb}");
+        Console.WriteLine($"DECOMP={decompile}");
 
+        
         FileInfo outFile = new FileInfo(option.outputFilePath);
         using (BinaryWriter writer = new BinaryWriter(outFile.OpenWrite()))
         {
@@ -113,6 +130,9 @@ namespace tiny_blockchain
         {
           byte[] bytes = reader.ReadBytes((int) reader.BaseStream.Length);
           var words = compiler.ByteCode2Words(bytes);
+          //デバッグ用
+          var decompile= compiler.DeCompileFromWords(words);
+          Console.WriteLine($"ORIGINAL={decompile}");
           machine.Run(words);
         }
       }
@@ -148,7 +168,7 @@ namespace tiny_blockchain
           Console.Write(word);
         }
 
-        machine.RunWard(BrainFuckWord.From(TypeBrainFuckCommand.POINTER_INC));
+        //machine.RunWord(BrainFuckWord.From(TypeBrainFuckCommand.POINTER_INC));
         machine.MemoryDump();
       }
     }
