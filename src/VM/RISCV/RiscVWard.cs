@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using tiny_blockchain.VM.Wards;
 
 namespace tiny_blockchain.VM
@@ -28,6 +29,11 @@ namespace tiny_blockchain.VM
     {
       throw new NotImplementedException();
     }
+
+    public override BitArray ToBitArray()
+    {
+      throw new NotImplementedException();
+    }
   }
   
   public class RV64I:Word
@@ -43,6 +49,11 @@ namespace tiny_blockchain.VM
     }
 
     public override string ToASMCode()
+    {
+      throw new NotImplementedException();
+    }
+
+    public override BitArray ToBitArray()
     {
       throw new NotImplementedException();
     }

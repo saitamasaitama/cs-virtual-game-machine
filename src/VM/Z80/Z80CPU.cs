@@ -1,3 +1,5 @@
+using System.Collections;
+
 namespace tiny_blockchain.VM.Z80
 {
   public class Z80CPU:Processor<Z80Ward>
@@ -23,6 +25,11 @@ namespace tiny_blockchain.VM.Z80
     public override string ToASMCode()
     {
       return "";
+    }
+
+    public override BitArray ToBitArray()
+    {
+      throw new System.NotImplementedException();
     }
   }
 }

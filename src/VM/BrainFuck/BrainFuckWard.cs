@@ -1,3 +1,6 @@
+using System.Collections;
+using System.Net;
+
 namespace tiny_blockchain.VM.BrainFuck
 {
   public enum TypeBrainFuckCommand
@@ -62,6 +65,21 @@ namespace tiny_blockchain.VM.BrainFuck
       }
     }
 
-    
+    public override BitArray ToBitArray()
+    {
+      var result = new BitArray(this.bits);
+      TypeBrainFuckCommand code = this;
+      int X = (int) code;
+      for (int i = 0; i < this.bits; i++)
+      {
+        if ((X & 1) == 1)
+        {
+          result[i] = true;
+        }
+        X = X >> 1;
+      }
+
+      return result;
+    }
   }
 }

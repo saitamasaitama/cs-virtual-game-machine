@@ -33,18 +33,25 @@ namespace tiny_blockchain.VM
 
     protected abstract Processor<WORD> InitProsessor();
 
-    public void Run(ProgramCode code)
+    public void Run(WORD[] words)
     {
-      Console.WriteLine("Run Code");
-
-      foreach (WORD w in code.wards)
+      foreach (WORD word in words)
       {
-        this.RunWard(w);
+        this.RunWard(word);
       }
     }
 
+    /// <summary>
+    /// 1コマンドを実行
+    /// </summary>
+    /// <param name="w"></param>
     public abstract void RunWard(WORD w);
 
+    /// <summary>
+    /// これ使ってる？
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
     public WORD[] Load(Stream input)
     {
       WordReader<WORD> reader =loadReader(input);
@@ -55,7 +62,6 @@ namespace tiny_blockchain.VM
       }
 
       return new WORD[] { };
-      
     }
 
     public void MemoryDump()

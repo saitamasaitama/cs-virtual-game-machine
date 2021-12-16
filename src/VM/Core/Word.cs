@@ -44,6 +44,8 @@ namespace tiny_blockchain.VM
     }
 
     public abstract string ToASMCode();
+
+    public abstract BitArray ToBitArray();
   }
 
 

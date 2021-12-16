@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using tiny_blockchain.VM.Core;
 using tiny_blocn.VM;
 
@@ -10,10 +11,16 @@ namespace tiny_blockchain.VM
   {
     public byte[] Source2Bytes(string source)
     {
-      return Source2Wards(source).ToBytes();
+      WORD[] words = Source2Words(source);
+      byte[] header=CreateSourceHeader(words);
+      
+      return header.Concat(words.ToBytes()).ToArray();
     }
 
-    public abstract WORD[] Source2Wards(string source);
-    
+    public abstract byte[] CreateSourceHeader(WORD[] words);
+
+    public abstract WORD[] Source2Words(string source);
+
+    public abstract WORD[] ByteCode2Words(byte[] code);
   }
 }
