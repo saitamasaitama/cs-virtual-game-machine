@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text.RegularExpressions;
 using tiny_blockchain.VM;
 using tiny_blockchain.VM.BrainFuck;
+using tiny_blockchain.VM.Core;
 
 namespace tiny_blockchain
 {
@@ -33,9 +35,9 @@ namespace tiny_blockchain
         .ForEach(item =>
         {
           var doubleMatch = Regex.Match(item.arg, "^--([a-zA-Z0-9]+)$");
-          foreach (string capture in doubleMatch.Groups[1].Captures)
+          foreach (Capture capture in doubleMatch.Groups[1].Captures)
           {
-            doubleArg.Add(capture,item.index);
+            doubleArg.Add(capture.Value,item.index);
           }
 
           var singleMatch = Regex.Match(item.arg, "^-([a-zA-Z0-9]+)$");
@@ -74,8 +76,15 @@ namespace tiny_blockchain
         memorySize = option.memorySize
       });
 
-      
-      
+      if (option.isCompile)
+      {
+        Console.WriteLine("Compile Mode");
+        Compiler<BrainFuckWord> compiler = new BrainFuckCompiler();
+
+        byte[] bytes= compiler.Source2Bytes(Console.In.ReadToEnd());
+        
+        Console.Out.Write(bytes.ToHexString());
+      }
       machine.RunWard(BrainFuckWord.From(TypeBrainFuckCommand.POINTER_INC));
       machine.MemoryDump();
       

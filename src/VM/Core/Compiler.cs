@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
+using tiny_blockchain.VM.Core;
 using tiny_blocn.VM;
 
 namespace tiny_blockchain.VM
@@ -9,30 +10,10 @@ namespace tiny_blockchain.VM
   {
     public byte[] Source2Bytes(string source)
     {
-      //WordWriter
       return Source2Wards(source).ToBytes();
     }
 
-    public WORD[] Source2Wards(string source)
-    {
-      var result = new List<WORD>();
-
-      return result.ToArray();
-    }
+    public abstract WORD[] Source2Wards(string source);
     
-    
-    
-    
-   
-    
-    
-
-
-    
-
-    public string String2IR()
-    {
-      return "";
-    }
   }
 }

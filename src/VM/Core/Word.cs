@@ -46,21 +46,5 @@ namespace tiny_blockchain.VM
     public abstract string ToASMCode();
   }
 
-  public static class WordExtention
-  {
-    public static byte[] ToBytes(this Word[] words)
-    {
-      Int64 totalBit = words.Sum(w => w.bits) / 8;
-      Int64 totalBytes = totalBit % 8 == 0 ? totalBit / 8 : totalBit / 8 + 1;
-      
-      //bitごとに計算
-      for (int i = 0; i < words.Length; i++)
-      {
-        
-      }
-      
-      
-      return new byte[totalBytes];
-    }
-  }
+
 }

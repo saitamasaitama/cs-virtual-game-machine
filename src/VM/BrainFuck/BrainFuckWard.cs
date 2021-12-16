@@ -61,7 +61,7 @@ namespace tiny_blockchain.VM.BrainFuck
         default: return "";
       }
     }
-    
+
     
   }
 }
