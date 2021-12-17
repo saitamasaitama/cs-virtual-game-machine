@@ -11,6 +11,8 @@ namespace tiny_blockchain
     public string Machine = "brainfuck";
     public bool isCompile = false;
     public bool isFile = false;
+    public bool isScript = false;
+    public bool isDebug = false; 
     public int memorySize = 1024;
     public string outputFile = $"out";
     public string inputFile = $"input";
@@ -114,6 +116,16 @@ namespace tiny_blockchain
         CheckMachine(machine);
         result.Machine = machine;
       });
+      parser.Add("d","debug", m =>
+      {
+        result.isDebug = true;
+      });
+      parser.Add("s", "script", m =>
+      {
+        result.isScript = true;
+      });
+      
+      
       return result;
     }
 

@@ -37,14 +37,11 @@ namespace tiny_blockchain
       {
         memorySize = opt.memorySize
       });
-      
-      var compiler = machine.GetCompiler();
 
       FileInfo inputFile = new FileInfo(opt.inputFile);
-      using (BinaryReader reader = new BinaryReader(inputFile.OpenRead()))
+      using (var reader = machine.GetReader(inputFile.OpenRead()))
       {
-        byte[] bytes = reader.ReadBytes((int) reader.BaseStream.Length);
-        var words = compiler.ByteCode2Words(bytes);
+        var words = reader.ReadWords();
         machine.Run(words);
       }
 
@@ -61,16 +58,12 @@ namespace tiny_blockchain
       {
         memorySize = opt.memorySize
       });
-      var compiler = machine.GetCompiler();
-      
       FileInfo inputFile = new FileInfo(opt.inputFile);
-      
-      using (BinaryReader reader = new BinaryReader(inputFile.OpenRead()))
+      using (var reader = machine.GetReader(inputFile.OpenRead()))
       {
-        byte[] bytes = reader.ReadBytes((int) reader.BaseStream.Length);
-        var words = compiler.ByteCode2Words(bytes);
+        var words= reader.ReadWords();
         machine.Run(words);
-      }      
+      }
       
       return true;
     }

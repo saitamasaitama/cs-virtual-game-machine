@@ -27,16 +27,10 @@ namespace tiny_blockchain.VM
       this.Meta = GetMeta();
     }
 
-    public abstract WORD ReadWord();
-
     public bool isReadable =>
       this.BaseStream.CanRead;
-    
-
     //最短のwordCountまで読み込む
-    public WORD[] ReadWords()
-    {
-      return new WORD[]{};
-    }
+    public abstract WORD[] ReadWords();
+
   }
 }

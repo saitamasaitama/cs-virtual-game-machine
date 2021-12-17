@@ -27,25 +27,14 @@ namespace tiny_blockchain
         Console.WriteLine("Compile Mode");
         string source = Console.In.ReadToEnd();
         byte[] bytes = compiler.Source2Bytes(source);
-        
-        BrainFuckWord[] words = compiler.ByteCode2Words(bytes);
-        var decompile = compiler.DeCompileFromWords(words);
-        Console.WriteLine($"SOURCE={source}");
-        //デバッグ用　ここから
-        StringBuilder sb = new StringBuilder();
-        foreach (BrainFuckWord word in words)
-        {
-          sb.Append(word);
-        }
-        //デバッグ用　ここまで
-        Console.WriteLine($"COMP={sb}");
-        Console.WriteLine($"DECO={decompile}");
         FileInfo outFile = new FileInfo(option.outputFilePath);
         using (BinaryWriter writer = new BinaryWriter(outFile.OpenWrite()))
         {
           writer.Write(bytes);
         }
         Console.WriteLine($"Write Code To:{option.outputFilePath} Done.({bytes.Length})");
+        
+        
       }
       else if (option.isFile)
       {
@@ -53,6 +42,11 @@ namespace tiny_blockchain
         Console.WriteLine($"FILE={option.inputFile}");
         var runner = new Runner(option);
         runner.Run();
+      }
+      else if (option.isScript)
+      {
+        Console.WriteLine("script Execution Mode");
+        
       }
       else
       {

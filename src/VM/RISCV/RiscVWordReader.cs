@@ -26,7 +26,7 @@ namespace tiny_blockchain.VM
       };
     }
 
-    public override RV32I ReadWord()
+    public override RV32I[] ReadWords()
     {
       throw new System.NotImplementedException();
     }

@@ -1,3 +1,6 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
@@ -21,13 +24,40 @@ namespace tiny_blockchain.VM.BrainFuck
     {
       return new WardMeta()
       {
-
+        
       };
     }
 
-    public override BrainFuckWord ReadWord()
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    public override BrainFuckWord[] ReadWords()
     {
-      throw new System.NotImplementedException();
+      byte[] code = this.ReadBytes((int)this.BaseStream.Length);
+      int wordCount = BitConverter.ToInt32(code, 0);
+      List<BrainFuckWord> result = new List<BrainFuckWord>();
+      
+      BitArray bitArray = new BitArray(code);
+      int wordSize = 3;
+      int offsetSize = 4 * 8;
+      for (int i = 0; i < wordCount; i++)
+      {
+        int bitIndex = offsetSize + (wordSize * i);
+        int word = 0;
+        //端数を調べる
+        for (int j = 0; j < wordSize; j++)
+        {
+          if (bitArray[bitIndex + j])
+          {
+            int on = 1;
+            on = on << (wordSize - 1 - j);
+            word = word | on;
+          }
+        }
+        result.Add(BrainFuckWord.From((TypeBrainFuckCommand) word));
+      }
+      return result.ToArray();
     }
   }
 }

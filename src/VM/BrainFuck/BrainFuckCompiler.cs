@@ -63,6 +63,7 @@ namespace tiny_blockchain.VM.BrainFuck
       return result.ToArray();
     }
 
+    /*
     public override BrainFuckWord[] ByteCode2Words(byte[] code)
     {
       //最初の4バイトはヘッダ
@@ -90,5 +91,6 @@ namespace tiny_blockchain.VM.BrainFuck
       
       return result.ToArray();
     }
+    */
   }
 }
