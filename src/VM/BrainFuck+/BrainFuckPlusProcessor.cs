@@ -82,10 +82,6 @@ namespace tiny_blockchain.VM.BrainFuckPlus
           ProgramCounter++;
         }
       }
-      else
-      {
-        
-      }
     }
 
 

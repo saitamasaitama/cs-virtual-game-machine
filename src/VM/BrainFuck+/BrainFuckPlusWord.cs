@@ -3,18 +3,13 @@ using System.Net;
 
 namespace tiny_blockchain.VM.BrainFuck
 {
+  /// <summary>
+  /// 4bit命令
+  /// 4bit目は「繰り返し回数」
+  /// 
+  /// </summary>
   public enum TypeBrainFuckPlusCommand
   {
-    /**
-> ポインタをインクリメントする。ポインタをptrとすると、C言語の「ptr++;」に相当する。
-< ポインタをデクリメントする。C言語の「ptr--;」に相当。
-+ ポインタが指す値をインクリメントする。C言語の「(*ptr)++;」に相当。
-- ポインタが指す値をデクリメントする。C言語の「(*ptr)--;」に相当。
-. ポインタが指す値を出力に書き出す。C言語の「putchar(*ptr);」に相当。
-, 入力から1バイト読み込んで、ポインタが指す先に代入する。C言語の「*ptr=getchar();」に相当。
-[ ポインタが指す値が0なら、対応する ] の直後にジャンプする。C言語の「while(*ptr){」に相当。
-] ポインタが指す値が0でないなら、対応する [ （の直後[注釈 1]）にジャンプする。C言語の「}」に相当[注釈 2]。 
-   */
     POINTER_INC, // > 000
     POINTER_DEC,  // < 001
     POINTER_VAL_INC, // + 010
@@ -22,17 +17,32 @@ namespace tiny_blockchain.VM.BrainFuck
     WRITE_POINTER_VAL,  //. 100
     READ_INPUT_BYTE,  // , 101
     JUMP_NEXT,        // [ 110
-    JUMP_BACK         // ] 111
+    JUMP_BACK,
+
+    //前のコマンドをN回繰り返す
+    LOOP_2,
+    LOOP_3,
+    LOOP_4,
+    LOOP_5,
+    LOOP_6,
+    LOOP_7,
+    LOOP_8,
+    
+    //何もしない
+    NOP 
   }
+  
 
   public class BrainFuckPlusWord : Word
   {
-    public BrainFuckPlusWord(byte[] bytes) : base(bytes,3)
+    public const int WORD_BIT_SIZE = 4;
+    
+    public BrainFuckPlusWord(byte[] bytes) : base(bytes,WORD_BIT_SIZE)
     {
     }
 
 
-    public static BrainFuckPlusWord From(TypeBrainFuckCommand command)
+    public static BrainFuckPlusWord From(TypeBrainFuckPlusCommand command)
     {
       return new BrainFuckPlusWord(
         new byte[]
@@ -61,7 +71,7 @@ namespace tiny_blockchain.VM.BrainFuck
         case TypeBrainFuckPlusCommand.READ_INPUT_BYTE: return ",";  
         case TypeBrainFuckPlusCommand.WRITE_POINTER_VAL: return ".";
 
-        default: return "";
+        default: return c.ToString();
       }
     }
 

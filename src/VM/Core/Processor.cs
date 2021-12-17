@@ -33,7 +33,6 @@ namespace tiny_blockchain.VM
         ExecWord(this.program[ProgramCounter]);
         ProgramCounter++;
       }
-      //Console.WriteLine("Program End");
       Console.Write("\n");
     }
     

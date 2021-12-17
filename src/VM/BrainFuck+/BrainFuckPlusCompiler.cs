@@ -8,16 +8,27 @@ namespace tiny_blockchain.VM.BrainFuck
 {
   public class BrainFuckPlusCompiler:Compiler<BrainFuckPlusWord>
   {
-    public Dictionary<string, TypeBrainFuckCommand> CharacterTable = new Dictionary<string, TypeBrainFuckCommand>()
+    public Dictionary<string, TypeBrainFuckPlusCommand> CharacterTable = 
+      new Dictionary<string, TypeBrainFuckPlusCommand>()
     {
-      {"]",TypeBrainFuckCommand.JUMP_BACK},
-      {"[", TypeBrainFuckCommand.JUMP_NEXT},
-      {"<", TypeBrainFuckCommand.POINTER_DEC},
-      {">", TypeBrainFuckCommand.POINTER_INC},
-      {"-", TypeBrainFuckCommand.POINTER_VAL_DEC},
-      {"+", TypeBrainFuckCommand.POINTER_VAL_INC},
-      {",", TypeBrainFuckCommand.READ_INPUT_BYTE},
-      {".", TypeBrainFuckCommand.WRITE_POINTER_VAL},
+      {"]", TypeBrainFuckPlusCommand.JUMP_BACK},
+      {"[", TypeBrainFuckPlusCommand.JUMP_NEXT},
+      {"<", TypeBrainFuckPlusCommand.POINTER_DEC},
+      {">", TypeBrainFuckPlusCommand.POINTER_INC},
+      {"-", TypeBrainFuckPlusCommand.POINTER_VAL_DEC},
+      {"+", TypeBrainFuckPlusCommand.POINTER_VAL_INC},
+      {",", TypeBrainFuckPlusCommand.READ_INPUT_BYTE},
+      {".", TypeBrainFuckPlusCommand.WRITE_POINTER_VAL},
+
+      //追加分
+      {"2", TypeBrainFuckPlusCommand.LOOP_2},
+      {"3", TypeBrainFuckPlusCommand.LOOP_3},
+      {"4", TypeBrainFuckPlusCommand.LOOP_4},
+      {"5", TypeBrainFuckPlusCommand.LOOP_5},
+      {"6", TypeBrainFuckPlusCommand.LOOP_6},
+      {"7", TypeBrainFuckPlusCommand.LOOP_7},
+      {"8", TypeBrainFuckPlusCommand.LOOP_8},
+      {"_", TypeBrainFuckPlusCommand.NOP},
     };
     
     private BrainFuckPlusWord fromString(string c)
