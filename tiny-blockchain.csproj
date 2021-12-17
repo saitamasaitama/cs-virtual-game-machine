@@ -12,4 +12,8 @@
     </Compile>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="src\VM\Z80" />
+  </ItemGroup>
+
 </Project>

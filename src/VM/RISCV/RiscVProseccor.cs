@@ -2,16 +2,17 @@ using System.Collections.Generic;
 
 namespace tiny_blockchain.VM
 {
-  public class RiscVProseccor:Processor<RV32I>
+  public enum RISCV_REG
   {
-
-    protected override Register[] InitRegister()
+    
+  }
+  
+  public class RiscVProseccor:Processor<RV32I,RISCV_REG>
+  {
+    
+    protected override Dictionary<RISCV_REG, Register> InitRegister()
     {
-      List<Register> result = new List<Register>();
-      
-      result.Add(new Register());
-
-      return result.ToArray();
+      throw new System.NotImplementedException();
     }
 
     public override void ExecWord(RV32I w)

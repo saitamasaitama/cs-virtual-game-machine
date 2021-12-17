@@ -1,8 +1,10 @@
 using System;
+using System.Runtime.CompilerServices;
+using Microsoft.VisualBasic.CompilerServices;
 
 namespace tiny_blockchain.VM
 {
-  public struct Register
+  public class Register
   {
     public enum RegisterType
     {
@@ -33,9 +35,16 @@ namespace tiny_blockchain.VM
       }
     }
 
+    public static Register operator ++(Register r)
+    {
+      r.Count++;
+      return r;
+    }
+
     public static implicit operator byte[](Register register)
     {
       return register.bytes;
     }
   }
+  
 }

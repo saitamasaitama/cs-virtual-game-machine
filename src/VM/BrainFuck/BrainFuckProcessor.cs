@@ -1,15 +1,22 @@
 using System;
+using System.Collections.Generic;
 
 namespace tiny_blockchain.VM.BrainFuck
 {
-  public class BrainFuckProcessor:Processor<BrainFuckWord>
+  public enum REG
   {
-    protected override Register[] InitRegister()
+    PC,
+    SP
+  }
+  
+  public class BrainFuckProcessor:Processor<BrainFuckWord,REG>
+  {
+    protected override Dictionary<REG,Register> InitRegister()
     {
-      return new Register[]
+      return new Dictionary<REG, Register>()
       {
-        new (32), // memory pointer,
-        new (32)  //Program Counter
+        {REG.PC,new Register(32)}, //Program Counter
+        {REG.SP,new Register(32)} // memory pointer,
       };
     }
 
@@ -36,7 +43,7 @@ namespace tiny_blockchain.VM.BrainFuck
         default: break;
       }
 
-      this.Registers[1].Count++;
+      this.Registers[REG.PC]++;
       
 
     }

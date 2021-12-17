@@ -16,13 +16,14 @@ namespace tiny_blockchain.VM
   /// CPU,メモリ,外部出力等も備わった仮想マシン
   /// </summary>
   [Serializable]
-  public abstract class Machine<WORD>
+  public abstract class Machine<WORD,REG>
+    where REG:Enum
     where WORD : Word
   {
     private MachineMeta meta;
 
     //BIOS相当が必要
-    public Processor<WORD> mainProcessor;
+    public Processor<WORD,REG> mainProcessor;
     public Memory mainMemory;
     
     public Machine(MachineMeta meta)
@@ -31,7 +32,7 @@ namespace tiny_blockchain.VM
       mainProcessor = InitProsessor();
     }
 
-    protected abstract Processor<WORD> InitProsessor();
+    protected abstract Processor<WORD,REG> InitProsessor();
 
     public void Run(WORD[] words)
     {

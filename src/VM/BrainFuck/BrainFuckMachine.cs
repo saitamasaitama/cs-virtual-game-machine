@@ -2,14 +2,14 @@ using System.IO;
 
 namespace tiny_blockchain.VM.BrainFuck
 {
-  public class BrainFuckMachine:Machine<BrainFuckWord>
+  public class BrainFuckMachine:Machine<BrainFuckWord,REG>
   {
     public BrainFuckMachine(MachineMeta meta) : base(meta)
     {
       
     }
 
-    protected override Processor<BrainFuckWord> InitProsessor()
+    protected override Processor<BrainFuckWord, REG> InitProsessor()
     {
       return new BrainFuckProcessor();
     }
