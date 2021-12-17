@@ -3,7 +3,7 @@ using System.Reflection.PortableExecutable;
 
 namespace tiny_blockchain.VM
 {
-  public class RiscVMachine:Machine<RV32I,RISCV_REG>
+  public class RiscVMachine:Machine<RV32I>
   {
 
     public RiscVMachine(MachineMeta meta) : base(meta)
@@ -11,12 +11,7 @@ namespace tiny_blockchain.VM
     }
 
 
-    protected override Processor<RV32I, RISCV_REG> InitProsessor()
-    {
-      throw new System.NotImplementedException();
-    }
-
-    protected override void RunWord(RV32I w)
+    protected override Processor<RV32I> InitProsessor()
     {
       throw new System.NotImplementedException();
     }

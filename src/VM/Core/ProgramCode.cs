@@ -1,3 +1,6 @@
+using System;
+using System.Text;
+
 namespace tiny_blockchain.VM
 {
   public struct ProgramCode<WORD>
@@ -14,9 +17,33 @@ namespace tiny_blockchain.VM
       };
     }
 
+    public WORD this[int p] => words[p];
+
     public static implicit operator WORD[](ProgramCode<WORD> code)
     {
       return code.words;
-    } 
+    }
+
+    public void DumpInfo(int needle, int width=5)
+    {
+      StringBuilder sb = new StringBuilder();
+      int begin = (0 < (needle - width)) ? needle - width : 0;
+      int end = words.Length < needle + width ? words.Length : needle + width;
+      sb.Append($"[{begin}-({needle})-{end}]");
+      for (int i = begin; i < end; i++)
+      {
+        if (i == needle)
+        {
+          sb.Append($"({this[i].ToASMCode()})");
+        }
+        else
+        {
+          sb.Append(this[i].ToASMCode());  
+        }
+        
+      }
+      Console.WriteLine(sb.ToString());
+      
+    }
   }
 }

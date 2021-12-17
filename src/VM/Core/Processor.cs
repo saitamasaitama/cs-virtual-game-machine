@@ -1,25 +1,42 @@
 using System;
-using System.Collections.Generic;
 
 namespace tiny_blockchain.VM
 {
   /// <summary>
   /// CPU相当
   /// </summary>
-  public abstract class Processor<WORD,REGISTOR_NAME>
-    where REGISTOR_NAME:Enum
+  public abstract class Processor<WORD>
     where WORD : Word
   {
     //public Register[] Registers;
-    public Dictionary<REGISTOR_NAME, Register> Registers;
+    protected int ProgramCounter = 0;
+    protected Memory memory;
+    protected ProgramCode<WORD> program;
+    
 
-    protected abstract Dictionary<REGISTOR_NAME,Register> InitRegister();
-
-    public Processor()
+    public Processor(Memory mainMemory)
     {
-      this.Registers = InitRegister();
+      this.memory = mainMemory;
     }
 
-    public abstract void ExecWord(WORD w);
+    public void RunProgram(ProgramCode<WORD> program)
+    {
+      this.program = program;
+      Run();
+    }
+
+    private void Run()
+    {
+      while (0<= ProgramCounter &&　ProgramCounter < program.words.Length　)
+      {
+        
+        ExecWord(this.program[ProgramCounter]);
+        ProgramCounter++;
+      }
+      //Console.WriteLine("Program End");
+      Console.Write("\n");
+    }
+    
+    protected abstract void ExecWord(WORD w);
   }
 }

@@ -68,10 +68,7 @@ namespace tiny_blockchain.VM.BrainFuck
       //最初の4バイトはヘッダ
       int wordCount= BitConverter.ToInt32(code, 0);
       List<BrainFuckWord> result = new List<BrainFuckWord>();
-      Console.WriteLine($"bytecode2Words WC={wordCount}");
       BitArray bitArray = new BitArray(code);
-      Console.WriteLine($"ORIGIN_bit={bitArray.ToBitsString(4)}");
-      //bitarrayはリトルエンディアン。つまり逆
       int wordSize = 3;
       int offsetSize = 4*8;
       for (int i = 0; i < wordCount; i++)

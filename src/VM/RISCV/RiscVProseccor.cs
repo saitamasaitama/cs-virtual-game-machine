@@ -7,17 +7,16 @@ namespace tiny_blockchain.VM
     
   }
   
-  public class RiscVProseccor:Processor<RV32I,RISCV_REG>
+  public class RiscVProseccor:Processor<RV32I>
   {
-    
-    protected override Dictionary<RISCV_REG, Register> InitRegister()
+
+    protected override void ExecWord(RV32I w)
     {
       throw new System.NotImplementedException();
     }
 
-    public override void ExecWord(RV32I w)
+    public RiscVProseccor(Memory mainMemory) : base(mainMemory)
     {
-      throw new System.NotImplementedException();
     }
   }
 }

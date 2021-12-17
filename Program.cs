@@ -132,7 +132,7 @@ namespace tiny_blockchain
           var words = compiler.ByteCode2Words(bytes);
           //デバッグ用
           var decompile= compiler.DeCompileFromWords(words);
-          Console.WriteLine($"ORIGINAL={decompile}");
+//          Console.WriteLine($"ORIGINAL={decompile}");
           machine.Run(words);
         }
       }
