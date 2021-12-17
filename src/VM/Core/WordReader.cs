@@ -3,6 +3,10 @@ using System.Text;
 
 namespace tiny_blockchain.VM
 {
+  /// <summary>
+  /// 現在使っていない
+  /// </summary>
+  /// <typeparam name="WORD"></typeparam>
   public abstract class WordReader<WORD>:BinaryReader
   where WORD:Word
   {
@@ -23,7 +27,7 @@ namespace tiny_blockchain.VM
       this.Meta = GetMeta();
     }
 
-    public abstract WORD ReadWard();
+    public abstract WORD ReadWord();
 
     public bool isReadable =>
       this.BaseStream.CanRead;

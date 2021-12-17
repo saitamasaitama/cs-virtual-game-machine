@@ -39,30 +39,16 @@ namespace tiny_blockchain.VM
       mainProcessor.RunProgram(program);
     }
 
-    /// <summary>
-    /// これ使ってる？
-    /// </summary>
-    /// <param name="input"></param>
-    /// <returns></returns>
-    public WORD[] Load(Stream input)
-    {
-      WordReader<WORD> reader =loadReader(input);
-
-      using (reader)
-      {
-        reader.ReadWords();
-      }
-
-      return new WORD[] { };
-    }
+    //必要かどうかは微妙
+    public abstract Compiler<WORD> GetCompiler();
+    public abstract WordReader<WORD> GetReader(Stream stream);
+  
 
     public void MemoryDump()
     {
       Console.WriteLine(BitConverter.ToString(this.mainMemory));
     }
     
-
-    protected abstract WordReader<WORD> loadReader(Stream stream);
   }
 
 

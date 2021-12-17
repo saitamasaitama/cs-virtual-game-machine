@@ -14,11 +14,14 @@ namespace tiny_blockchain.VM.BrainFuck
       return new BrainFuckProcessor(mainMemory);
     }
 
-    
-    protected override WordReader<BrainFuckWord> loadReader(Stream stream)
+    public override Compiler<BrainFuckWord> GetCompiler()
     {
-      return new BrainFuckReader(stream);
+      return new BrainFuckCompiler();
     }
 
+    public override WordReader<BrainFuckWord> GetReader(Stream stream)
+    {
+      return new BrainFuckWordReader(stream);
+    }
   }
 }

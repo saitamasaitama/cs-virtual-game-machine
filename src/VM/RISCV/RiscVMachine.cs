@@ -16,10 +16,14 @@ namespace tiny_blockchain.VM
       throw new System.NotImplementedException();
     }
 
-    protected override WordReader<RV32I> loadReader(Stream stream)
+    public override Compiler<RV32I> GetCompiler()
     {
       throw new System.NotImplementedException();
     }
 
+    public override WordReader<RV32I> GetReader(Stream stream)
+    {
+      throw new System.NotImplementedException();
+    }
   }
 }
