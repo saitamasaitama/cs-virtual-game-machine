@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using tiny_blockchain.VM.Core;
 
 namespace tiny_blockchain.VM
 {

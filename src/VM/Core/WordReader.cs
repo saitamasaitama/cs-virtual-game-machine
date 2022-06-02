@@ -1,5 +1,6 @@
 using System.IO;
 using System.Text;
+using tiny_blockchain.VM.Core;
 
 namespace tiny_blockchain.VM
 {

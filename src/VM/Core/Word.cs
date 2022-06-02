@@ -1,8 +1,6 @@
-using System;
 using System.Collections;
-using System.Linq;
 
-namespace tiny_blockchain.VM
+namespace tiny_blockchain.VM.Core
 {
   public abstract class Word
   {

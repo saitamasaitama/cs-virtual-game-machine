@@ -1,4 +1,5 @@
 using System;
+using tiny_blockchain.VM.Core;
 
 namespace tiny_blockchain.VM
 {

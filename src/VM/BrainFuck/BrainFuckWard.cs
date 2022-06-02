@@ -25,7 +25,7 @@ namespace tiny_blockchain.VM.BrainFuck
     JUMP_BACK         // ] 111
   }
 
-  public class BrainFuckWord : Word
+  public class BrainFuckWord : SVGMachine.Word
   {
     public BrainFuckWord(byte[] bytes) : base(bytes,3)
     {

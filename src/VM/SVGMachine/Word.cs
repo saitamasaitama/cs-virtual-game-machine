@@ -1,43 +1,16 @@
 using System.Collections;
-using System.Net;
+using tiny_blockchain.VM.BrainFuck;
 
-namespace tiny_blockchain.VM.BrainFuck
+namespace tiny_blockchain.VM.SVGMachine
 {
-  /// <summary>
-  /// 4bit命令
-  /// 4bit目は「繰り返し回数」
-  /// 
-  /// </summary>
-  public enum TypeBrainFuckPlusCommand
-  {
-    POINTER_INC, // > 000
-    POINTER_DEC,  // < 001
-    POINTER_VAL_INC, // + 010
-    POINTER_VAL_DEC,  // - 011
-    WRITE_POINTER_VAL,  //. 100
-    READ_INPUT_BYTE,  // , 101
-    JUMP_NEXT,        // [ 110
-    JUMP_BACK,
 
-    //前のコマンドをN回繰り返す
-    LOOP_2,
-    LOOP_3,
-    LOOP_4,
-    LOOP_5,
-    LOOP_6,
-    LOOP_7,
-    LOOP_8,
-    
-    //何もしない
-    NOP 
-  }
   
 
-  public class BrainFuckPlusWord : Core.Word
+  public class Word : Core.Word
   {
     public const int WORD_BIT_SIZE = 4;
     
-    public BrainFuckPlusWord(byte[] bytes) : base(bytes,WORD_BIT_SIZE)
+    public Word(byte[] bytes) : base(bytes,WORD_BIT_SIZE)
     {
     }
 
@@ -50,6 +23,7 @@ namespace tiny_blockchain.VM.BrainFuck
       );
     }
 
+    /*
     public static implicit operator TypeBrainFuckPlusCommand(BrainFuckPlusWord w)
     {
       byte c = w.bytes[0];
@@ -91,11 +65,20 @@ namespace tiny_blockchain.VM.BrainFuck
 
       return result;
     }
+    */
 
 
     public override string ToString()
     {
       return ToASMCode();
+    }
+    public override string ToASMCode()
+    {
+      throw new System.NotImplementedException();
+    }
+    public override BitArray ToBitArray()
+    {
+      throw new System.NotImplementedException();
     }
   }
 }

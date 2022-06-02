@@ -4,6 +4,7 @@ using System.IO;
 using System.Reflection.Metadata;
 using System.Runtime.Serialization;
 using System.Text;
+using tiny_blockchain.VM.Core;
 
 namespace tiny_blockchain.VM
 {

@@ -14,6 +14,10 @@ namespace tiny_blockchain
   class Program
   {
 
+    /// <summary>
+    /// マシン
+    /// </summary>
+    /// <param name="args"></param>
     static void Main(string[] args)
     {
       Option option = OptionParser.Parse(args);

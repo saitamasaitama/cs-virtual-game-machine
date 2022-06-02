@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using tiny_blockchain.VM.BrainFuck;
 
-namespace tiny_blockchain.VM.BrainFuck_
+namespace tiny_blockchain.VM.SVGMachine
 {
-  public class BrainFuckPlusCompiler:Compiler<BrainFuckPlusWord>
+  public class Compiler:Compiler<BrainFuckPlusWord>
   {
     public Dictionary<string, TypeBrainFuckPlusCommand> CharacterTable = 
       new Dictionary<string, TypeBrainFuckPlusCommand>()

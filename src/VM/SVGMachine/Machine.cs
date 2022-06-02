@@ -1,18 +1,19 @@
 using System.IO;
 using tiny_blockchain.VM.BrainFuck;
+using tiny_blockchain.VM.BrainFuck_;
 
-namespace tiny_blockchain.VM.BrainFuck_
+namespace tiny_blockchain.VM.SVGMachine
 {
-  public class BrainFuckPlusMachine:Machine<BrainFuckPlusWord>
+  public class Machine:Machine<BrainFuckPlusWord>
   {
-    public BrainFuckPlusMachine(MachineMeta meta) : base(meta)
+    public Machine(MachineMeta meta) : base(meta)
     {
       
     }
 
     protected override Processor<BrainFuckPlusWord> InitProsessor()
     {
-      return new BrainFuckPlusProcessor(mainMemory);
+      return new BrainFuck_.BrainFuckPlusProcessor(mainMemory);
     }
 
     public override Compiler<BrainFuckPlusWord> GetCompiler()
